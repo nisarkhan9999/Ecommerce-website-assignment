@@ -1,0 +1,36 @@
+.hero {
+  height: 600px;
+margin-top: 10px;
+  background-image: url("../images/Rectangle\ 2.svg");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  width: 50%;
+  padding-left: 80px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: 800;
+  max-width: 550px;
+}
+
+.hero-content p {
+  max-width: 450px;
+  color: #666;
+  margin: 20px 0;
+}
+
+.hero-content button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 15px 50px;
+  border-radius: 30px;
+  cursor: pointer;
+}
