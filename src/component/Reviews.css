@@ -1,5 +1,5 @@
 .rv-wrapper {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 60px auto;
   padding: 0 20px;
 }
@@ -24,46 +24,47 @@
 
 .rv-arrow {
   background: #fff;
-  border: 1px solid #ddd;
-  width: 42px;
-  height: 42px;
+  border: 1.5px solid #e5e5e5;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: all 0.2s;
+  color: #333;
 }
 
 .rv-arrow:hover {
   background: #000;
+  border-color: #000;
   color: #fff;
 }
 
-/* Fade effect on both edges */
 .rv-fade-container {
   position: relative;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0,
-    black 40px,
-    black calc(100% - 40px),
+    black 60px,
+    black calc(100% - 60px),
     transparent 100%
   );
   mask-image: linear-gradient(
     to right,
     transparent 0,
-    black 40px,
-    black calc(100% - 40px),
+    black 60px,
+    black calc(100% - 60px),
     transparent 100%
   );
 }
 
 .rv-track {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  padding: 10px 4px 20px;
+  padding: 12px 4px 24px;
 }
 
 .rv-track::-webkit-scrollbar {
@@ -72,55 +73,59 @@
 
 .rv-card {
   flex: 0 0 340px;
-  min-height: 220px;
-  background: #fff;
-  border: 1px solid #e5e5e5;
+  min-height: 160px;        
+  background: #ffffff;
+  border: 1px solid #ececec;
   border-radius: 20px;
   padding: 28px;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
 .rv-stars {
-  color: #f5a623;
-  font-size: 1.3rem;
-  letter-spacing: 4px;
-  margin-bottom: 14px;
+  color: #ffb800;
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
 }
 
 .rv-name-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .rv-name {
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
+  color: #111;
 }
 
 .rv-badge {
   background: #01ab31;
   color: #fff;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .rv-text {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   color: #555;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 @media (max-width: 600px) {
   .rv-card {
     flex: 0 0 280px;
+    padding: 24px;
   }
 }

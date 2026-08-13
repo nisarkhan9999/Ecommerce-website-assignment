@@ -5,6 +5,7 @@ import ProductCard from './component/ProductCard';
 import NewBrand from './component/NewBrand';
 import DressStyle from './component/DressStyle';
 import Reviews from './component/Reviews';
+import Footer from './component/Footer';
 import "./App.css"
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <NewBrand/>
       <DressStyle/>  
       <Reviews/>
+      <Footer/>
     </div>
   );
 }

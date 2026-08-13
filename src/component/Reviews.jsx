@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef,useEffect,useState } from "react";
 import "./Reviews.css";
 
 const reviews = [
@@ -7,32 +7,42 @@ const reviews = [
   { id: 3, name: "Bilal Raza", verified: true, rating: 5, text: "Best online shopping experience I've had in a long time. Highly recommend this store to everyone." },
   { id: 4, name: "Ayesha Malik", verified: true, rating: 4, text: "Loved the fabric quality and the customer support was very responsive whenever I had questions." },
   { id: 5, name: "Hassan Tariq", verified: true, rating: 5, text: "Customer service was excellent, they helped me pick the right size and it fit perfectly." },
-  { id: 6, name: "Zainab Khan", verified: true, rating: 5, text: "Highly recommend this store! The packaging was neat and the product matched the pictures exactly." },
 ];
+
+// Cards ko teen baar duplicate kiya — loop ka illusion dene ke liye
+const loopedReviews = [...reviews, ...reviews, ...reviews];
 
 const Reviews = () => {
   const scrollRef = useRef(null);
 
+useEffect(() => {
+  const track = scrollRef.current;
+  if (track) {
+    const cardWidth = track.firstChild.offsetWidth + 20;
+    track.scrollLeft = cardWidth * reviews.length;
+  }
+}, []);
   const scroll = (direction) => {
     const track = scrollRef.current;
     if (!track) return;
 
-    const cardWidth = track.firstChild.offsetWidth + 20; // card width + gap
-    const maxScroll = track.scrollWidth - track.clientWidth;
+    const cardWidth = track.firstChild.offsetWidth + 20;
+    const singleSetWidth = cardWidth * reviews.length;
 
     if (direction === "right") {
-      if (track.scrollLeft >= maxScroll - 5) {
-        track.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        track.scrollBy({ left: cardWidth, behavior: "smooth" });
-      }
+      track.scrollBy({ left: cardWidth, behavior: "smooth" });
     } else {
-      if (track.scrollLeft <= 5) {
-        track.scrollTo({ left: maxScroll, behavior: "smooth" });
-      } else {
-        track.scrollBy({ left: -cardWidth, behavior: "smooth" });
-      }
+      track.scrollBy({ left: -cardWidth, behavior: "smooth" });
     }
+
+    // thoda delay dekar check karo, agar edge ke paas pahunch gaye to silently middle set mein jump karo
+    setTimeout(() => {
+      if (track.scrollLeft <= 5) {
+        track.scrollLeft = singleSetWidth;
+      } else if (track.scrollLeft >= singleSetWidth * 2 - 5) {
+        track.scrollLeft = singleSetWidth;
+      }
+    }, 400);
   };
 
   return (
@@ -46,9 +56,15 @@ const Reviews = () => {
       </div>
 
       <div className="rv-fade-container">
-        <div className="rv-track" ref={scrollRef}>
-          {reviews.map((review) => (
-            <div key={review.id} className="rv-card">
+        <div
+          className="rv-track"
+          ref={scrollRef}
+          onScroll={(e) => {
+            // startup pe middle set se shuru karo
+          }}
+        >
+          {loopedReviews.map((review, index) => (
+            <div key={index} className="rv-card">
               <p className="rv-stars">{"★".repeat(review.rating)}</p>
               <div className="rv-name-row">
                 <span className="rv-name">{review.name}</span>

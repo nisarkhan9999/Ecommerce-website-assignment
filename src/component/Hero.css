@@ -34,3 +34,30 @@ margin-top: 10px;
   border-radius: 30px;
   cursor: pointer;
 }
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+  align-items: center;  /* ye add karo */
+}
+
+.hero-stats > div {
+  padding: 0 20px;
+}
+
+.hero-stats > div:not(:last-child) {
+  border-right: 2px solid #ccc;  /* hr ki jagah ye */
+  padding-right: 40px;
+}
+
+.hero-stats h2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.hero-stats p {
+  color: #666;
+  font-size: 14px;
+  margin: 5px 0 0 0;  /* thoda gap upar */
+}

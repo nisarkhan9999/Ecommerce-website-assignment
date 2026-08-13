@@ -1,0 +1,133 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #f2f0f1;
+  margin-top: 150px;
+
+}
+
+.Black {
+  width: 70%;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  padding: 30px 50px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+  z-index: 2;
+    transform: translateY(-80px);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 350px;
+}
+
+.input {
+  background-color: white;
+  border-radius: 30px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.group button {
+  background-color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 14px;
+}
+.mail-icon {
+  color: #666;
+  font-size: 20px;
+}
+.footer-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  height: 100%;
+  background: #f2f0f1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.footer-about {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-about p {
+  color: #666;
+  line-height: 1.6;
+  max-width: 250px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons span {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-column h3 {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.footer-column a {
+  color: #666;
+  text-decoration: none;
+  line-height: 1.5;
+}
+.section-divider {
+  border: none;
+  height: 1.5px;
+    background: #e5e7eb;
+  max-width: 1300px;
+  margin: 40px auto;
+}
+.last-footer{
+    display: flex;
+    gap: 500px;
+    justify-content: center;
+    align-items: center;
+}
+.last-footer div:last-child a {
+  display: inline-block;
+  font-size: 0;      /* extra spaces hatao */
+  line-height: 0;    /* extra height hatao */
+}
+
+.last-footer div:last-child img {
+  display: block;
+}
