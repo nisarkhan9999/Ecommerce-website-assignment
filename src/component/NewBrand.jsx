@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import "./ProductCard.css";
+import "./NewBrand.css";
 
 const products = [
   { id: 1, name: "Skinny Fit Jeans", image: "/images/jeans.png", price: 240, rating: 4.5 },
@@ -12,46 +12,48 @@ const products = [
   { id: 8, name: "Wide Leg Jeans", image: "/images/jeans.png", price: 250, rating: 4.4 },
 ];
 
-const ProductCard = () => {
+const NewBrand = () => {
   const [showAll, setShowAll] = useState(false);
   const buttonRef = useRef(null);
   const sectionRef = useRef(null);
   const visibleProducts = showAll ? products : products.slice(0, 4);
 
   const handleToggle = () => {
-    const wasShowingAll = showAll;
-    setShowAll(!showAll);
+  const wasShowingAll = showAll;
+  setShowAll(!showAll);
 
-    setTimeout(() => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
       if (wasShowingAll) {
         sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       } else {
         buttonRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
-    }, 100);
-  };
+    });
+  });
+};
 
   return (
-    <div className="main" ref={sectionRef}>
-      <h1 className="heading">New Arrivals</h1>
-      <div className="products">
-        {visibleProducts.map((product) => (
-          <div className="product-card" key={product.id}>
-            <div className="product-image">
-              <img src={product.image} alt={product.name} />
-            </div>
-            <h3>{product.name}</h3>
-            <p className="rating">⭐ {product.rating}/5</p>
-            <p className="price">${product.price}</p>
-          </div>
-        ))}
+<div className="nb-main" ref={sectionRef}>
+  <h1 className="nb-heading">New Brand</h1>
+  <div className="nb-products">
+    {visibleProducts.map((product) => (
+      <div className="nb-product-card" key={product.id}>
+        <div className="nb-product-image">
+          <img src={product.image} alt={product.name} />
+        </div>
+        <h3>{product.name}</h3>
+        <p className="nb-rating">⭐ {product.rating}/5</p>
+        <p className="nb-price">${product.price}</p>
       </div>
+    ))}
+  </div>
 
-      <button className="view-all-btn" ref={buttonRef} onClick={handleToggle}>
-        {showAll ? "Show Less" : "View All"}
-      </button>
-    </div>
+  <button className="nb-view-all-btn" ref={buttonRef} onClick={handleToggle}>
+    {showAll ? "Show Less" : "View All"}
+  </button>
+</div>
   );
 };
 
-export default ProductCard;
+export default NewBrand;

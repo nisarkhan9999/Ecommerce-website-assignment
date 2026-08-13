@@ -1,0 +1,14 @@
+ html {
+  scroll-behavior: smooth;
+}  
+   
+.section-divider {
+  border: none;
+  height: 1.5px;
+    background: #e5e7eb;
+  max-width: 1300px;
+  margin: 40px auto;
+}
+body {
+  overflow-anchor: none;
+}
