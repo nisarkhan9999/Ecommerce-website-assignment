@@ -1,4 +1,8 @@
 import "./DressStyle.css";
+import first from "../images/Frame 61 copy.png"
+import second from "../images/Frame 62.png"
+import fourth from "../images/Frame 64.png"
+import third from "../images/Frame 63.png"
 
 const styles = [
   { id: 1, name: "Casual", image: "/images/casual.png" },
@@ -15,22 +19,22 @@ const styles = [
       <div className="ds-grid">
         <div className="ds-row">
           <div className="ds-card small">
-            <img src="/images/casual.png" alt="Casual" className="ds-image" />
-            <span className="ds-label">Casual</span>
+            <img src={first} className="ds-image" />
+            {/* <span className="ds-label">Casual</span> */}
           </div>
           <div className="ds-card large">
-            <img src="/images/formal.png" alt="Formal" className="ds-image" />
-            <span className="ds-label">Formal</span>
+            <img src={second}alt="Formal" className="ds-image" />
+            {/* <span className="ds-label">Formal</span> */}
           </div>
         </div>
         <div className="ds-row">
           <div className="ds-card large">
-            <img src="/images/party.png" alt="Party" className="ds-image" />
-            <span className="ds-label">Party</span>
+            <img src={fourth} alt="Party" className="ds-image" />
+            {/* <span className="ds-label">Party</span> */}
           </div>
           <div className="ds-card small">
-            <img src="/images/gym.png" alt="Gym" className="ds-image" />
-            <span className="ds-label">Gym</span>
+            <img src={third}  alt="Gym" className="ds-image" />
+            {/* <span className="ds-label">Gym</span> */}
           </div>
         </div>
       </div>
