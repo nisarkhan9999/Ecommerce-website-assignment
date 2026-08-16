@@ -6,20 +6,30 @@ import NewBrand from './component/NewBrand';
 import DressStyle from './component/DressStyle';
 import Reviews from './component/Reviews';
 import Footer from './component/Footer';
+import ProductDetail from './component/ProductDetail';
 import "./App.css"
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Navbar />
-      <HeroSection/>
-      <Black/>
-      <ProductCard/><br />
-      <hr className="section-divider" />
-      <NewBrand/>
-      <DressStyle/>  
-      <Reviews/>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <HeroSection/>
+            <Black/>
+            <ProductCard/><br />
+            <hr className="section-divider" />
+            <NewBrand/>
+            <DressStyle/>  
+            <Reviews/>
+          </>
+        } />
+        <Route path="/product/:id" element={<ProductDetail />} />
+      </Routes>
       <Footer/>
-    </div>
+    </BrowserRouter>
   );
 }
 

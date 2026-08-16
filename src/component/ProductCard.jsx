@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom"
 import "./ProductCard.css";
 
 const ProductCard = () => {
@@ -6,6 +7,7 @@ const ProductCard = () => {
   const [showAll, setShowAll] = useState(false);
   const buttonRef = useRef(null);
   const sectionRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:5000/products")
@@ -34,7 +36,7 @@ const visibleProducts = showAll ? products.slice(0, 8) : products.slice(0, 4);
       <h1 className="heading">New Arrivals</h1>
       <div className="products">
         {visibleProducts.map((product) => (
-          <div className="product-card" key={product._id}>
+          <div className="product-card" key={product._id}   onClick={() => navigate(`/product/${product._id}`)}>
             <div className="product-image">
               <img src={product.image} alt={product.name} />
             </div>

@@ -1,0 +1,131 @@
+.pd-wrapper {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
+}
+
+.pd-top {
+  display: flex;
+  gap: 40px;
+}
+
+.pd-main-image {
+  flex: 1;
+  background: #f0eeed;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 450px;
+}
+
+.pd-main-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.pd-info {
+  flex: 1;
+}
+
+.pd-info h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.pd-rating {
+  color: #ffb800;
+  margin-bottom: 10px;
+}
+
+.pd-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.pd-description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.pd-label {
+  font-weight: 500;
+  color: #555;
+  margin: 14px 0 10px;
+}
+
+.pd-colors {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pd-color {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.pd-color.active {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+}
+
+.pd-sizes {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pd-size {
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: none;
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+.pd-size.active {
+  background: #000;
+  color: #fff;
+}
+
+.pd-cart-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.pd-qty {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #f0f0f0;
+  border-radius: 30px;
+  padding: 10px 16px;
+}
+
+.pd-qty button {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.pd-add-btn {
+  flex: 1;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+}
