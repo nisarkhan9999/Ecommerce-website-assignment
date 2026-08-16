@@ -10,6 +10,33 @@
   gap: 40px;
 }
 
+.pd-gallery {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+}
+
+.pd-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pd-thumb {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  cursor: pointer;
+  background: #f0eeed;
+  transition: all 0.2s;
+}
+
+.pd-thumb:hover {
+  outline: 2px solid #000;
+  outline-offset: -2px;
+}
+
 .pd-main-image {
   flex: 1;
   background: #f0eeed;
@@ -128,4 +155,79 @@
   border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.pd-tabs-wrapper {
+  border-bottom: 1px solid #ddd;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.pd-tabs {
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.pd-tabs span {
+  padding: 14px 0;
+  cursor: pointer;
+  color: #888;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.pd-tabs span.active {
+  color: #000;
+  border-bottom: 2px solid #000;
+  font-weight: 600;
+}
+
+.pd-tab-content {
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 20px;
+  color: #666;
+}
+
+.pd-reviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.pd-review-card {
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.pd-review-stars {
+  color: #ffb800;
+  margin-bottom: 8px;
+}
+
+.pd-review-name {
+  margin-bottom: 8px;
+  color: #000;
+}
+
+.pd-check {
+  background: #01ab31;
+  color: #fff;
+  border-radius: 50%;
+  padding: 1px 5px;
+  font-size: 0.7rem;
+}
+
+.pd-review-text {
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.pd-review-date {
+  color: #999;
+  font-size: 0.8rem;
 }
