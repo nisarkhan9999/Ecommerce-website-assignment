@@ -14,7 +14,7 @@ const CategoryPage = () => {
   const perPage = 9;
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://e-commerce-backend-five-henna.vercel.app/products")
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));

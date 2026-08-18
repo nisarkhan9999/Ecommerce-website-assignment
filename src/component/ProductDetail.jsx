@@ -74,7 +74,7 @@ const ProductDetail = () => {
   ];
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`https://e-commerce-backend-five-henna.vercel.app/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
