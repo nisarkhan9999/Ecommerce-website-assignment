@@ -52,6 +52,7 @@ const visibleProducts = showAll ? products.slice(0, 8) : products.slice(0, 4);
           {showAll ? "Show Less" : "View All"}
         </button>
       )}
+      
     </div>
   );
 };

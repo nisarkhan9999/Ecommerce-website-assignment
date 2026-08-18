@@ -1,30 +1,99 @@
-import logo from "../images/SHOP.CO.svg"
-
-import { FaSearch, FaRegUserCircle} from 'react-icons/fa';
+import { useState, useEffect } from "react";
+import logo from "../images/SHOP.CO.svg";
+import {
+  FaSearch,
+  FaRegUserCircle,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
+import "./Navbar.css";
+
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+      setCartCount(cart.length);
+    };
+
+    updateCartCount();
+
+    window.addEventListener("cartUpdated", updateCartCount);
+
+    return () => {
+      window.removeEventListener(
+        "cartUpdated",
+        updateCartCount
+      );
+    };
+  }, []);
+
   return (
-    <nav>
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "80px" }}>
-  <img src={logo} alt="" width={"130px"} />
-  <div style={{ gap: "20px", display: "flex" }}>
-    <div>Shop</div>
-    <div>On sale</div>
-    <div>New arrivals</div>
-    <div>Brands</div>
-  </div>
-  <div style={{ display: 'flex',gap:"10px", border: '1px solid #ddd', borderRadius: '8px', padding: '7px 100px 10px 20px' }}>
-    <FaSearch style={{ color: '#888' }} />
-    <input type="text" placeholder="Search for products..." style={{ border: 'none', outline: 'none', width: '100%' }} />
-  </div>
-  <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-    <LuShoppingCart />
-    <FaRegUserCircle />
-  </div>
-</div>
+    <nav className="navbar">
+      <div className="navbar-inner">
 
-   
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
 
+        <img
+          src={logo}
+          alt=""
+          className="navbar-logo"
+        />
+
+        <div
+          className={`navbar-links ${
+            menuOpen ? "open" : ""
+          }`}
+        >
+          <div>Shop</div>
+          <div>On sale</div>
+          <div>New arrivals</div>
+          <div>Brands</div>
+        </div>
+
+        <div className="navbar-right">
+
+          <div className="search-wrapper">
+            <FaSearch className="search-icon" />
+
+            <input
+              type="text"
+              placeholder="Search..."
+              className="search-input"
+            />
+          </div>
+
+          <div
+            className="cart-icon-wrapper"
+            onClick={() => navigate("/cart")}
+          >
+            <LuShoppingCart />
+
+            {cartCount > 0 && (
+              <span className="cart-count">
+                {cartCount}
+              </span>
+            )}
+          </div>
+
+          <FaRegUserCircle />
+
+        </div>
+
+      </div>
     </nav>
   );
 };

@@ -8,11 +8,11 @@ import "./black.css"
 const Black =()=>{
 return(
 <div className="query">
-<div ><img src={para} alt="" style={{width:"120px", marginTop:"10px"}} /></div>
-<div><img src={gucci} alt=""style={{width:"100px", marginTop:"10px"}} /></div>
-<div><img src={zara} alt="" style={{width:"60px", marginTop:"10px"}}/></div>
-<div><img src={calvin} alt=""style={{width:"150px", marginTop:"10px"}} /></div>
-<div ><img src={vers} alt=""style={{width:"100px", marginTop:"10px"}} /></div>
+  <div><img src={para} alt="" className="brand-img" /></div>
+  <div><img src={gucci} alt="" className="brand-img" /></div>
+  <div><img src={zara} alt="" className="brand-img" /></div>
+  <div><img src={calvin} alt="" className="brand-img" /></div>
+  <div><img src={vers} alt="" className="brand-img" /></div>
 </div>
 )}
 export default Black

@@ -1,9 +1,11 @@
+/* ===== DESKTOP ===== */
 .ds-wrapper {
   background: #f0f0f0;
   border-radius: 24px;
   padding: 40px;
   max-width: 1200px;
   margin: 40px auto;
+  overflow: hidden;
 }
 
 .ds-title {
@@ -35,13 +37,19 @@
   height: 280px;
   display: flex;
   align-items: flex-end;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.ds-card.small {
+.ds-card:hover {
+  transform: scale(1.02);
+}
+
+.ds-small {
   flex: 0.6;
 }
 
-.ds-card.large {
+.ds-large {
   flex: 1;
 }
 
@@ -62,10 +70,87 @@
   font-size: 1.6rem;
   font-weight: 600;
   color: #111;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  border-radius: 0 12px 0 0;
+  margin: 0;
 }
 
+@media (max-width: 900px) {
+  .ds-wrapper {
+    padding: 30px 20px;
+    margin: 30px 15px;
+    border-radius: 20px;
+  }
+
+  .ds-title {
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+
+  .ds-row {
+    gap: 15px;
+  }
+
+  .ds-card {
+    height: 300px;
+    border-radius: 14px;
+  }
+
+  .ds-small {
+    flex: 0.5;
+  }
+
+  .ds-large {
+    flex: 1;
+  }
+
+  .ds-label {
+    font-size: 1.3rem;
+    padding: 18px;
+  }
+}
 @media (max-width: 700px) {
   .ds-row {
     flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .ds-card {
+    width: 100%;
+    height: 200px;
+    flex: none !important;
+  }
+   .ds-adjust {
+    object-position: top center;
+  }
+
+  .ds-small {
+    width: 100%;
+    height: 200px;
+    flex: none !important;
+  }
+
+  .ds-large {
+    width: 100%;
+    height: 300px;
+    flex: none !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .ds-card,
+  .ds-small {
+    width: 100%;
+    height: 160px;
+  }
+   .ds-adjust {
+    object-position: top center;
+  }
+
+  .ds-large {
+    width: 100%;
+    height: 150px;
   }
 }

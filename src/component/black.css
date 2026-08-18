@@ -1,7 +1,44 @@
-.query{
-    background-color: black;
+.query {
+  background-color: black;
+  display: flex;
+  gap: 50px;
+  justify-content: space-around;
+  align-items: center;
+  height: 70px;
+  padding: 0 20px;
+}
+
+.brand-img {
+  width: 120px;
+  height: auto;
+  max-height: 50px;
+  object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  .query {
     display: flex;
-    gap: 50px;
-    justify-content: space-around;
-    height: 70px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 20px 10px;
+    gap: 20px 30px;
+  }
+
+  .brand-img {
+    width: 80px;
+    max-height: 35px;
+  }
+}
+
+@media (max-width: 450px) {
+  .query {
+    gap: 15px 20px;
+  }
+
+  .brand-img {
+    width: 60px;
+    max-height: 28px;
+  }
 }

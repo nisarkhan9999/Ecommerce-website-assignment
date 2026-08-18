@@ -1,0 +1,136 @@
+.navbar {
+  border-bottom: 1px solid #eee;
+  padding: 16px 0;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+.navbar-logo {
+  width: 130px;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 1.1rem;
+}
+/* ===== SEARCH BAR STYLES ===== */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 8px 16px;
+  border-radius: 25px;
+  gap: 10px;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 250px;
+  font-size: 0.95rem;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+}
+
+.search-icon {
+  color: #888;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.cart-icon-wrapper {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* ===== SEARCH BAR END ===== */
+
+/* Responsive */
+@media (max-width: 800px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar-inner {
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 16px 20px;
+    gap: 14px;
+    z-index: 10;
+  }
+
+  .navbar-links.open {
+    display: flex;
+  }
+
+  /* 👇 Mobile par SIRF ICON */
+  .search-wrapper {
+    background: transparent; 
+    padding: 0;             
+    gap: 0;                 
+    border-radius: 0;        
+  }
+
+  .search-input {
+    display: none;           
+  }
+
+  .search-icon {
+    font-size: 1.3rem;
+    color: #333;
+  }
+}

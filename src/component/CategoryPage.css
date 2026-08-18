@@ -1,0 +1,278 @@
+.cat-wrapper {
+  max-width: 1300px;
+  margin: 30px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
+}
+
+.cat-breadcrumb {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+.cat-layout {
+  display: flex;
+  gap: 30px;
+}
+
+.cat-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.cat-filter-header {
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.cat-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cat-filter-item {
+  display: flex;
+  justify-content: space-between;
+  color: #444;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.cat-filter-item.active {
+  color: #000;
+  font-weight: 700;
+}
+
+.cat-filter-item span {
+  color: #999;
+}
+
+.cat-sidebar hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+.cat-filter-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Dual range price slider */
+.cat-price-slider {
+  position: relative;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.cat-slider-track {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  background: #000;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.cat-price-slider input[type="range"] {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 4px;
+  background: #ddd;
+  border-radius: 4px;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.cat-price-slider input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #000;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.cat-price-slider input[type="range"]::-moz-range-thumb {
+  pointer-events: all;
+  width: 16px;
+  height: 16px;
+  background: #000;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.cat-range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 6px;
+}
+
+.cat-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cat-color {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.cat-color.active {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+  transform: scale(1.1);
+}
+
+.cat-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cat-size {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background: #f2f2f2;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.cat-size.active {
+  background: #000;
+  color: #fff;
+}
+
+.cat-apply-btn {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 30px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cat-main {
+  flex: 1;
+}
+
+.cat-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cat-top-row h2 {
+  font-size: 1.6rem;
+}
+
+.cat-sort {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cat-card {
+  cursor: pointer;
+}
+
+.cat-card-image {
+  background: #f0eeed;
+  border-radius: 16px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.cat-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cat-card h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.cat-rating {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.cat-price {
+  font-weight: 700;
+}
+
+.cat-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.cat-pagination button {
+  border: none;
+  background: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #444;
+}
+
+.cat-pagination button.active {
+  background: #000;
+  color: #fff;
+}
+
+.cat-pagination button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .cat-layout {
+    flex-direction: column;
+  }
+  .cat-sidebar {
+    width: 100%;
+  }
+  .cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
