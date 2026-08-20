@@ -11,6 +11,7 @@ const footerLinks = {
   resources: ["Free eBooks", "Development Tutorial", "How to - Blog", "Youtube Playlist"]
 }
 
+
 const Footer=()=>{
 return(
 <footer className="footer">

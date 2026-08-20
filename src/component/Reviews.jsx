@@ -9,7 +9,6 @@ const reviews = [
   { id: 5, name: "Hassan Tariq", verified: true, rating: 5, text: "Customer service was excellent, they helped me pick the right size and it fit perfectly." },
 ];
 
-// Cards ko teen baar duplicate kiya — loop ka illusion dene ke liye
 const loopedReviews = [...reviews, ...reviews, ...reviews];
 
 const Reviews = () => {
@@ -35,7 +34,6 @@ useEffect(() => {
       track.scrollBy({ left: -cardWidth, behavior: "smooth" });
     }
 
-    // thoda delay dekar check karo, agar edge ke paas pahunch gaye to silently middle set mein jump karo
     setTimeout(() => {
       if (track.scrollLeft <= 5) {
         track.scrollLeft = singleSetWidth;
@@ -60,7 +58,6 @@ useEffect(() => {
           className="rv-track"
           ref={scrollRef}
           onScroll={(e) => {
-            // startup pe middle set se shuru karo
           }}
         >
           {loopedReviews.map((review, index) => (

@@ -18,7 +18,6 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  /* ===== CART COUNT ===== */
 
   useEffect(() => {
     const updateCartCount = () => {
@@ -40,7 +39,6 @@ const Navbar = () => {
     };
   }, []);
 
-  /* ===== LOGIN USER CHECK ===== */
 
   useEffect(() => {
     const checkAuth = () => {
@@ -68,7 +66,6 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-inner">
 
-        {/* MENU BUTTON */}
 
         <button
           className="menu-toggle"
@@ -77,7 +74,6 @@ const Navbar = () => {
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
 
-        {/* LOGO */}
 
         <img
           src={logo}
@@ -87,7 +83,6 @@ const Navbar = () => {
           style={{ cursor: "pointer" }}
         />
 
-        {/* NAV LINKS */}
 
         <div
           className={`navbar-links ${
@@ -100,11 +95,9 @@ const Navbar = () => {
           <div>Brands</div>
         </div>
 
-        {/* RIGHT SIDE */}
 
         <div className="navbar-right">
 
-          {/* SEARCH */}
 
           <div className="search-wrapper">
             <FaSearch className="search-icon" />
@@ -116,7 +109,6 @@ const Navbar = () => {
             />
           </div>
 
-          {/* CART */}
 
           <div
             className="cart-icon-wrapper"
@@ -131,7 +123,6 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* USER */}
 
           {userName ? (
             <div style={{ position: "relative" }}>

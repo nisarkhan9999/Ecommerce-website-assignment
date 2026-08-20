@@ -51,7 +51,6 @@
 }
 
 
-/* Product image */
 .nb-product-image {
   height: 250px;
   background: #f2f0f1;
@@ -70,7 +69,6 @@
 }
 
 
-/* Product name */
 .nb-product-card h3 {
   font-size: 18px;
   margin: 12px 0 6px;
@@ -78,7 +76,6 @@
 }
 
 
-/* Rating */
 .nb-rating {
   margin: 0 0 6px;
   font-size: 14px;
@@ -86,7 +83,6 @@
 }
 
 
-/* Price */
 .nb-price {
   font-size: 22px;
   font-weight: bold;
@@ -95,7 +91,6 @@
 }
 
 
-/* View All button */
 .nb-view-all-btn {
   margin-top: 30px;
   padding: 12px 40px;
@@ -117,7 +112,6 @@
 }
 
 
-/* ===== TABLET ===== */
 @media (max-width: 900px) {
   .nb-products {
     grid-template-columns: repeat(2, 1fr);
@@ -135,7 +129,6 @@
 }
 
 
-/* ===== MOBILE ===== */
 @media (max-width: 600px) {
   .nb-products {
     grid-template-columns: repeat(2, 1fr);
@@ -178,7 +171,6 @@
 }
 
 
-/* ===== SMALL SCREEN ===== */
 @media (max-width: 400px) {
   .nb-products {
     grid-template-columns: 1fr;

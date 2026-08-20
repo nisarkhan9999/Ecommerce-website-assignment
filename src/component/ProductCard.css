@@ -275,7 +275,6 @@
   }
 }
 
-/* Chhoti screens - 1 column */
 @media (max-width: 400px) {
   .products {
     grid-template-columns: 1fr;

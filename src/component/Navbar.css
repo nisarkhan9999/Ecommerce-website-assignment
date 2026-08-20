@@ -37,7 +37,6 @@
   align-items: center;
   font-size: 1.1rem;
 }
-/* ===== SEARCH BAR STYLES ===== */
 .search-wrapper {
   display: flex;
   align-items: center;
@@ -86,9 +85,7 @@
   align-items: center;
   justify-content: center;
 }
-/* ===== SEARCH BAR END ===== */
 
-/* Responsive */
 @media (max-width: 800px) {
   .menu-toggle {
     display: block;
@@ -117,7 +114,6 @@
     display: flex;
   }
 
-  /* 👇 Mobile par SIRF ICON */
   .search-wrapper {
     background: transparent; 
     padding: 0;             
