@@ -10,12 +10,18 @@ import ProductDetail from './component/ProductDetail';
 import CategoryPage from './component/CategoryPage';
 import CartPage from './component/CartPage';
 import "./App.css"
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import Signup from './component/Signup';
+import Login from './component/Login';
+import Dashboard from './component/Dashboard';
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const hideNavFooter = location.pathname === "/login" || location.pathname === "/signup";
+
   return (
-    <BrowserRouter>
-      <Navbar />
+    <>
+      {!hideNavFooter && <Navbar />}
       <Routes>
         <Route path="/" element={
           <>
@@ -31,8 +37,19 @@ function App() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
-      <Footer/>
+      {!hideNavFooter && <Footer/>}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }

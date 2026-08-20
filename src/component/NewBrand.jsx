@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./NewBrand.css";
 
 const NewBrand = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [showAll, setShowAll] = useState(false);
   const buttonRef = useRef(null);
@@ -14,8 +16,7 @@ const NewBrand = () => {
       .catch((err) => console.log(err));
   }, []);
 
-
-const visibleProducts = showAll ? products.slice(8, 16) : products.slice(8, 12);
+  const visibleProducts = showAll ? products.slice(8, 16) : products.slice(8, 12);
 
   const handleToggle = () => {
     const wasShowingAll = showAll;
@@ -37,7 +38,11 @@ const visibleProducts = showAll ? products.slice(8, 16) : products.slice(8, 12);
       <h1 className="nb-heading">New Brand</h1>
       <div className="nb-products">
         {visibleProducts.map((product) => (
-          <div className="nb-product-card" key={product._id}>
+          <div
+            className="nb-product-card"
+            key={product._id}
+            onClick={() => navigate(`/product/${product._id}`)}
+          >
             <div className="nb-product-image">
               <img src={product.image} alt={product.name} />
             </div>

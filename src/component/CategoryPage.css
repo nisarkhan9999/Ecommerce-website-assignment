@@ -63,7 +63,8 @@
   margin-bottom: 12px;
 }
 
-/* Dual range price slider */
+/* PRICE SLIDER */
+
 .cat-price-slider {
   position: relative;
   height: 30px;
@@ -125,6 +126,8 @@
   margin-top: 6px;
 }
 
+/* COLORS */
+
 .cat-colors {
   display: flex;
   flex-wrap: wrap;
@@ -144,6 +147,8 @@
   outline-offset: 3px;
   transform: scale(1.1);
 }
+
+/* SIZE */
 
 .cat-sizes {
   display: flex;
@@ -265,14 +270,149 @@
   cursor: not-allowed;
 }
 
+
+/* =========================
+   TABLET
+========================= */
+
 @media (max-width: 900px) {
+
+  .cat-wrapper {
+    padding: 0 18px;
+  }
+
   .cat-layout {
     flex-direction: column;
+    gap: 25px;
   }
+
   .cat-sidebar {
     width: 100%;
   }
+
+  .cat-main {
+    width: 100%;
+  }
+
   .cat-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .cat-card-image {
+    height: 300px;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .cat-wrapper {
+    margin: 20px auto;
+    padding: 0 14px;
+  }
+
+  .cat-breadcrumb {
+    margin-bottom: 15px;
+  }
+
+  .cat-sidebar {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .cat-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .cat-top-row h2 {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+
+  .cat-sort {
+    font-size: 0.78rem;
+  }
+
+  .cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 10px;
+  }
+
+  .cat-card-image {
+    height: 220px;
+    border-radius: 13px;
+  }
+
+  .cat-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .cat-rating {
+    font-size: 0.75rem;
+  }
+
+  .cat-price {
+    font-size: 0.9rem;
+  }
+
+  .cat-pagination {
+    gap: 4px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  .cat-pagination button {
+    padding: 7px 9px;
+    font-size: 0.78rem;
+  }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 400px) {
+
+  .cat-wrapper {
+    padding: 0 10px;
+  }
+
+  .cat-sidebar {
+    padding: 14px;
+  }
+
+  .cat-grid {
+    gap: 16px 8px;
+  }
+
+  .cat-card-image {
+    height: 180px;
+    border-radius: 11px;
+  }
+
+  .cat-card h3 {
+    font-size: 0.82rem;
+  }
+
+  .cat-rating {
+    font-size: 0.7rem;
+  }
+
+  .cat-price {
+    font-size: 0.85rem;
+  }
+
+  .cat-pagination button {
+    padding: 6px 7px;
+    font-size: 0.72rem;
   }
 }

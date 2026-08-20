@@ -1,4 +1,4 @@
-/* ===== DESKTOP ===== */
+/* ===== DRESS STYLE SECTION ===== */
 .ds-wrapper {
   background: #f0f0f0;
   border-radius: 24px;
@@ -16,6 +16,7 @@
   letter-spacing: 1px;
   margin-bottom: 30px;
   font-family: Arial, sans-serif;
+  color: #000;
 }
 
 .ds-grid {
@@ -29,128 +30,146 @@
   gap: 20px;
 }
 
+/* Common card */
 .ds-card {
   position: relative;
-  background: #fff;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  height: 280px;
-  display: flex;
-  align-items: flex-end;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.ds-card:hover {
-  transform: scale(1.02);
-}
-
-.ds-small {
-  flex: 0.6;
+  background: #ddd;
+  flex: 1;
+  height: 300px;
+  min-width: 0; /* important for flex children */
 }
 
 .ds-large {
+  flex: 2;
+}
+
+.ds-small {
   flex: 1;
 }
 
+/* Images */
 .ds-image {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   display: block;
+  transition: transform 0.3s ease;
 }
 
+.ds-card:hover .ds-image {
+  transform: scale(1.03);
+}
+
+/* Labels */
 .ds-label {
-  position: relative;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+  font-family: Arial, sans-serif;
+  text-transform: capitalize;
   z-index: 2;
-  padding: 24px;
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #111;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(4px);
-  border-radius: 0 12px 0 0;
-  margin: 0;
+}
+.ds-label{
+  display: none;
 }
 
+/* ===== TABLET ===== */
 @media (max-width: 900px) {
   .ds-wrapper {
     padding: 30px 20px;
-    margin: 30px 15px;
-    border-radius: 20px;
+    margin: 30px 16px;
   }
 
   .ds-title {
-    font-size: 2rem;
-    margin-bottom: 25px;
-  }
-
-  .ds-row {
-    gap: 15px;
+    font-size: 1.8rem;
+    margin-bottom: 24px;
   }
 
   .ds-card {
-    height: 300px;
-    border-radius: 14px;
-  }
-
-  .ds-small {
-    flex: 0.5;
-  }
-
-  .ds-large {
-    flex: 1;
-  }
-
-  .ds-label {
-    font-size: 1.3rem;
-    padding: 18px;
+    height: 220px;
   }
 }
+
+/* ===== MOBILE ===== */
 @media (max-width: 700px) {
+  .ds-wrapper {
+    padding: 24px 14px;
+    margin: 20px 12px;
+    border-radius: 18px;
+  }
+
+  .ds-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .ds-grid {
+    gap: 14px;
+  }
+
   .ds-row {
     flex-direction: column;
-    width: 100%;
-    gap: 12px;
+    gap: 14px;
   }
 
-  .ds-card {
-    width: 100%;
-    height: 200px;
-    flex: none !important;
-  }
-   .ds-adjust {
-    object-position: top center;
-  }
-
+  .ds-card,
+  .ds-large,
   .ds-small {
     width: 100%;
-    height: 200px;
-    flex: none !important;
+    flex: none;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
   }
 
-  .ds-large {
+   .ds-card {
     width: 100%;
-    height: 300px;
-    flex: none !important;
+    height: auto;
+    aspect-ratio: 3 / 2;   /* white space khatam */
+    min-width: 0;
+    flex: none;
+    overflow: hidden;
+  }
+
+  .ds-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* contain hatao */
+    object-position: 70% top;  /* text left side safe rahega */
+  }
+
+   .ds-label {
+    display: block;
+    top: 14px;
+    left: 14px;
+    font-size: 1.7rem;
+    font-weight: 750;
+    color: #000;
+    font-family: Arial, sans-serif;
+    z-index: 2;
   }
 }
 
-@media (max-width: 450px) {
-  .ds-card,
-  .ds-small {
-    width: 100%;
-    height: 160px;
-  }
-   .ds-adjust {
-    object-position: top center;
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 400px) {
+  .ds-wrapper {
+    padding: 20px 12px;
+    margin: 16px 10px;
   }
 
-  .ds-large {
-    width: 100%;
-    height: 150px;
+  .ds-title {
+    font-size: 1.3rem;
+  }
+
+  .ds-card,
+  .ds-large,
+  .ds-small {
+    aspect-ratio: 4 / 3;
   }
 }

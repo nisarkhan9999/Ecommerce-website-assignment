@@ -9,12 +9,25 @@ const ProductCard = () => {
   const sectionRef = useRef(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch("https://e-commerce-backend-five-henna.vercel.app/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.log(err));
-  }, []);
+ useEffect(() => {
+  fetch("https://e-commerce-backend-five-henna.vercel.app/products")
+    .then((res) => {
+      console.log("Status:", res.status);
+
+      if (!res.ok) {
+        throw new Error(`HTTP Error: ${res.status}`);
+      }
+
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Products:", data);
+      setProducts(data);
+    })
+    .catch((err) => {
+      console.log("Fetch Error:", err);
+    });
+}, []);
 
 const visibleProducts = showAll ? products.slice(0, 8) : products.slice(0, 4);
 
