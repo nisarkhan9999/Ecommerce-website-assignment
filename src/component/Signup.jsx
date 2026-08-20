@@ -9,7 +9,8 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-    const res = await fetch("https://e-commerce-backend-five-henna.vercel.app/auth/signup", {
+    // Ye badlo:
+const res = await fetch("https://e-commerce-backend-five-henna.vercel.app/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),

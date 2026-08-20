@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./CategoryPage.css";
 
 const CategoryPage = () => {
+  const { category } = useParams(); // "all", "t-shirts", "jeans", etc.
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
@@ -16,13 +18,25 @@ const CategoryPage = () => {
   useEffect(() => {
     fetch("https://e-commerce-backend-five-henna.vercel.app/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        setProducts(data);
+        // Filter products based on category
+        if (category && category !== "all") {
+          const filtered = data.filter(p => 
+            p.category?.toLowerCase() === category.toLowerCase() ||
+            p.name?.toLowerCase().includes(category.toLowerCase())
+          );
+          setFilteredProducts(filtered);
+        } else {
+          setFilteredProducts(data);
+        }
+      })
       .catch((err) => console.log(err));
-  }, []);
+  }, [category]);
 
-  const totalPages = Math.ceil(products.length / perPage);
+  const totalPages = Math.ceil(filteredProducts.length / perPage);
   const startIndex = (currentPage - 1) * perPage;
-  const visibleProducts = products.slice(startIndex, startIndex + perPage);
+  const visibleProducts = filteredProducts.slice(startIndex, startIndex + perPage);
 
   const colors = ["#22c55e", "#ef4444", "#eab308", "#f97316", "#06b6d4", "#2563eb", "#7c3aed", "#ec4899", "#fff", "#000"];
   const sizes = ["XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "3X-Large", "4X-Large"];
@@ -39,12 +53,18 @@ const CategoryPage = () => {
     setMaxPrice(value);
   };
 
+  // Get category display name
+  const getCategoryName = () => {
+    if (!category || category === "all") return "All Products";
+    return category.charAt(0).toUpperCase() + category.slice(1);
+  };
+
   return (
     <div className="cat-wrapper">
-      <p className="cat-breadcrumb">Home &gt; Casual</p>
+      <p className="cat-breadcrumb">Home &gt; {getCategoryName()}</p>
 
       <div className="cat-layout">
-        {/* Sidebar filters */}
+        {/* Sidebar filters - same as before */}
         <aside className="cat-sidebar">
           <div className="cat-filter-header">
             <span>Filters</span>
@@ -135,8 +155,8 @@ const CategoryPage = () => {
         {/* Products */}
         <div className="cat-main">
           <div className="cat-top-row">
-            <h2>Casual</h2>
-            <span className="cat-sort">Showing {startIndex + 1}-{Math.min(startIndex + perPage, products.length)} of {products.length} Products</span>
+            <h2>{getCategoryName()}</h2>
+            <span className="cat-sort">Showing {startIndex + 1}-{Math.min(startIndex + perPage, filteredProducts.length)} of {filteredProducts.length} Products</span>
           </div>
 
           <div className="cat-grid">
@@ -157,31 +177,33 @@ const CategoryPage = () => {
           </div>
 
           {/* Pagination */}
-          <div className="cat-pagination">
-            <button
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(currentPage - 1)}
-            >
-              ← Previous
-            </button>
-
-            {Array.from({ length: totalPages }, (_, i) => (
+          {totalPages > 1 && (
+            <div className="cat-pagination">
               <button
-                key={i}
-                className={currentPage === i + 1 ? "active" : ""}
-                onClick={() => setCurrentPage(i + 1)}
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(currentPage - 1)}
               >
-                {i + 1}
+                ← Previous
               </button>
-            ))}
 
-            <button
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(currentPage + 1)}
-            >
-              Next →
-            </button>
-          </div>
+              {Array.from({ length: totalPages }, (_, i) => (
+                <button
+                  key={i}
+                  className={currentPage === i + 1 ? "active" : ""}
+                  onClick={() => setCurrentPage(i + 1)}
+                >
+                  {i + 1}
+                </button>
+              ))}
+
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
+                Next →
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

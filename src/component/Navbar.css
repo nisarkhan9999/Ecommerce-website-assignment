@@ -85,6 +85,37 @@
   align-items: center;
   justify-content: center;
 }
+/* Navbar ke existing CSS ke neeche ye add karo */
+
+.nav-item-with-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.category-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  min-width: 180px;
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
 
 @media (max-width: 800px) {
   .menu-toggle {

@@ -15,30 +15,22 @@ const Navbar = () => {
   const [cartCount, setCartCount] = useState(0);
   const [userName, setUserName] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
 
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const updateCartCount = () => {
-      const cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
-
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
       setCartCount(cart.length);
     };
 
     updateCartCount();
-
     window.addEventListener("cartUpdated", updateCartCount);
-
     return () => {
-      window.removeEventListener(
-        "cartUpdated",
-        updateCartCount
-      );
+      window.removeEventListener("cartUpdated", updateCartCount);
     };
   }, []);
-
 
   useEffect(() => {
     const checkAuth = () => {
@@ -46,9 +38,7 @@ const Navbar = () => {
     };
 
     checkAuth();
-
     window.addEventListener("authChanged", checkAuth);
-
     return () => {
       window.removeEventListener("authChanged", checkAuth);
     };
@@ -62,18 +52,24 @@ const Navbar = () => {
     navigate("/");
   };
 
+  // Category list
+  const categories = [
+    { name: "T-shirts", path: "t-shirts" },
+    { name: "Shorts", path: "shorts" },
+    { name: "Shirts", path: "shirts" },
+    { name: "Hoodie", path: "hoodie" },
+    { name: "Jeans", path: "jeans" },
+  ];
+
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-
-
         <button
           className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
-
 
         <img
           src={logo}
@@ -83,25 +79,47 @@ const Navbar = () => {
           style={{ cursor: "pointer" }}
         />
 
+        <div className={`navbar-links ${menuOpen ? "open" : ""}`}>
+          {/* Shop with Dropdown */}
+          <div 
+            className="nav-item-with-dropdown"
+            onMouseEnter={() => setShowCategoryDropdown(true)}
+            onMouseLeave={() => setShowCategoryDropdown(false)}
+            style={{ position: "relative" }}
+          >
+            <div 
+              onClick={() => navigate("/category/all")}
+              style={{ cursor: "pointer" }}
+            >
+              Shop ▼
+            </div>
+            {showCategoryDropdown && (
+              <div className="category-dropdown">
+                {categories.map((cat) => (
+                  <div
+                    key={cat.path}
+                    onClick={() => {
+                      navigate(`/category/${cat.path}`);
+                      setShowCategoryDropdown(false);
+                      setMenuOpen(false);
+                    }}
+                    className="dropdown-item"
+                  >
+                    {cat.name}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
-        <div
-          className={`navbar-links ${
-            menuOpen ? "open" : ""
-          }`}
-        >
-          <div>Shop</div>
-          <div>On sale</div>
-          <div>New arrivals</div>
-          <div>Brands</div>
+          <div onClick={() => navigate("/category/all")}>On sale</div>
+          <div onClick={() => navigate("/category/all")}>New arrivals</div>
+          <div onClick={() => navigate("/category/all")}>Brands</div>
         </div>
 
-
         <div className="navbar-right">
-
-
           <div className="search-wrapper">
             <FaSearch className="search-icon" />
-
             <input
               type="text"
               placeholder="Search..."
@@ -109,20 +127,15 @@ const Navbar = () => {
             />
           </div>
 
-
           <div
             className="cart-icon-wrapper"
             onClick={() => navigate("/cart")}
           >
             <LuShoppingCart />
-
             {cartCount > 0 && (
-              <span className="cart-count">
-                {cartCount}
-              </span>
+              <span className="cart-count">{cartCount}</span>
             )}
           </div>
-
 
           {userName ? (
             <div style={{ position: "relative" }}>
@@ -179,9 +192,7 @@ const Navbar = () => {
               style={{ cursor: "pointer" }}
             />
           )}
-
         </div>
-
       </div>
     </nav>
   );

@@ -9,14 +9,13 @@ import Footer from './component/Footer';
 import ProductDetail from './component/ProductDetail';
 import CategoryPage from './component/CategoryPage';
 import CartPage from './component/CartPage';
-import "./App.css"
+import "./App.css";
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Signup from './component/Signup';
 import Login from './component/Login';
 import Dashboard from './component/Dashboard';
 
 function AppContent() {
-  
   const location = useLocation();
   const hideNavFooter = location.pathname === "/login" || location.pathname === "/signup";
 
@@ -35,16 +34,15 @@ function AppContent() {
             <Reviews/>
           </>
         } />
-
         <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/category" element={<CategoryPage />} />
+        {/* YE LINE CHANGE KARI HAI */}
+        <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       {!hideNavFooter && <Footer/>}
-
     </>
   );
 }
