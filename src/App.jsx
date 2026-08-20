@@ -16,6 +16,7 @@ import Login from './component/Login';
 import Dashboard from './component/Dashboard';
 
 function AppContent() {
+  
   const location = useLocation();
   const hideNavFooter = location.pathname === "/login" || location.pathname === "/signup";
 
@@ -34,6 +35,7 @@ function AppContent() {
             <Reviews/>
           </>
         } />
+
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/cart" element={<CartPage />} />
@@ -42,6 +44,7 @@ function AppContent() {
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       {!hideNavFooter && <Footer/>}
+
     </>
   );
 }

@@ -244,6 +244,7 @@ const ProductDetail = () => {
                     setQty(qty + 1)
                   }
                 >
+                
                   +
                 </button>
 
