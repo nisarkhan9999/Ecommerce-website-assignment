@@ -13,7 +13,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Signup from './component/Signup';
 import Login from './component/Login';
-import Dashboard from './component/Dashboard';
+// import Dashboard from './component/Dashboard';  // ← YE LINE HATAAO
 
 function AppContent() {
   const location = useLocation();
@@ -35,12 +35,11 @@ function AppContent() {
           </>
         } />
         <Route path="/product/:id" element={<ProductDetail />} />
-        {/* YE LINE CHANGE KARI HAI */}
         <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* <Route path="/dashboard" element={<Dashboard />} />  ← YE LINE HATAAO */}
       </Routes>
       {!hideNavFooter && <Footer/>}
     </>

@@ -27,6 +27,7 @@ const Navbar = () => {
 
     updateCartCount();
     window.addEventListener("cartUpdated", updateCartCount);
+
     return () => {
       window.removeEventListener("cartUpdated", updateCartCount);
     };
@@ -39,6 +40,7 @@ const Navbar = () => {
 
     checkAuth();
     window.addEventListener("authChanged", checkAuth);
+
     return () => {
       window.removeEventListener("authChanged", checkAuth);
     };
@@ -52,7 +54,6 @@ const Navbar = () => {
     navigate("/");
   };
 
-  // Category list
   const categories = [
     { name: "T-shirts", path: "t-shirts" },
     { name: "Shorts", path: "shorts" },
@@ -64,6 +65,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
+
         <button
           className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -80,19 +82,20 @@ const Navbar = () => {
         />
 
         <div className={`navbar-links ${menuOpen ? "open" : ""}`}>
-          {/* Shop with Dropdown */}
-          <div 
+
+          <div
             className="nav-item-with-dropdown"
             onMouseEnter={() => setShowCategoryDropdown(true)}
             onMouseLeave={() => setShowCategoryDropdown(false)}
             style={{ position: "relative" }}
           >
-            <div 
+            <div
               onClick={() => navigate("/category/all")}
               style={{ cursor: "pointer" }}
             >
               Shop ▼
             </div>
+
             {showCategoryDropdown && (
               <div className="category-dropdown">
                 {categories.map((cat) => (
@@ -118,6 +121,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-right">
+
           <div className="search-wrapper">
             <FaSearch className="search-icon" />
             <input
@@ -132,6 +136,7 @@ const Navbar = () => {
             onClick={() => navigate("/cart")}
           >
             <LuShoppingCart />
+
             {cartCount > 0 && (
               <span className="cart-count">{cartCount}</span>
             )}
@@ -139,6 +144,7 @@ const Navbar = () => {
 
           {userName ? (
             <div style={{ position: "relative" }}>
+
               <div
                 onClick={() => setShowDropdown(!showDropdown)}
                 style={{
@@ -159,32 +165,36 @@ const Navbar = () => {
               </div>
 
               {showDropdown && (
-                <div style={{
-                  position: "absolute",
-                  top: "42px",
-                  right: 0,
-                  background: "#fff",
-                  border: "1px solid #eee",
-                  borderRadius: "10px",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
-                  width: "160px",
-                  overflow: "hidden",
-                  zIndex: 100,
-                }}>
-                  <div
-                    onClick={() => { setShowDropdown(false); navigate("/dashboard"); }}
-                    style={{ padding: "12px 16px", cursor: "pointer", fontSize: "0.9rem" }}
-                  >
-                    Dashboard
-                  </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "42px",
+                    right: 0,
+                    background: "#fff",
+                    border: "1px solid #eee",
+                    borderRadius: "10px",
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
+                    width: "160px",
+                    overflow: "hidden",
+                    zIndex: 100,
+                  }}
+                >
+
                   <div
                     onClick={handleLogout}
-                    style={{ padding: "12px 16px", cursor: "pointer", fontSize: "0.9rem", color: "#e11", borderTop: "1px solid #f0f0f0" }}
+                    style={{
+                      padding: "12px 16px",
+                      cursor: "pointer",
+                      fontSize: "0.9rem",
+                      color: "#e11",
+                    }}
                   >
                     Logout
                   </div>
+
                 </div>
               )}
+
             </div>
           ) : (
             <FaRegUserCircle
@@ -192,6 +202,7 @@ const Navbar = () => {
               style={{ cursor: "pointer" }}
             />
           )}
+
         </div>
       </div>
     </nav>

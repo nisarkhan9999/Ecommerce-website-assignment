@@ -8,19 +8,29 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-const res = await fetch("https://e-commerce-backend-five-henna.vercel.app/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    const res = await fetch(
+      "https://e-commerce-backend-five-henna.vercel.app/auth/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      }
+    );
+
     const data = await res.json();
-    
 
     if (res.ok) {
       localStorage.setItem("token", data.token);
       localStorage.setItem("userName", data.name);
+      localStorage.setItem("role", data.role);
+
       window.dispatchEvent(new Event("authChanged"));
-      navigate("/");
+
+     if (data.role === "admin") {
+  window.location.href = "http://localhost:5174/admin";
+} else {
+  navigate("/");
+}
     } else {
       alert(data.message);
     }
@@ -30,15 +40,32 @@ const res = await fetch("https://e-commerce-backend-five-henna.vercel.app/auth/l
     <div className="auth-wrapper">
       <div className="auth-card">
         <div className="auth-logo">SHOP.CO</div>
-        <p className="auth-subtitle">Welcome back, login to your account</p>
+        <p className="auth-subtitle">
+          Welcome back, login to your account
+        </p>
 
-        <input className="auth-input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input className="auth-input" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input
+          className="auth-input"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-        <button className="auth-btn" onClick={handleLogin}>Login</button>
+        <input
+          className="auth-input"
+          placeholder="Password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button className="auth-btn" onClick={handleLogin}>
+          Login
+        </button>
 
         <p className="auth-switch">
-          Don't have an account? <span onClick={() => navigate("/signup")}>Sign Up</span>
+          Don't have an account?{" "}
+          <span onClick={() => navigate("/signup")}>Sign Up</span>
         </p>
       </div>
     </div>
