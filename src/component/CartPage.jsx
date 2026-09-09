@@ -60,7 +60,7 @@ const CartPage = () => {
 
         total: Number(total),
       };
-
+console.log("ORDER DATA:", orderData);
       const res = await fetch(API_URL, {
         method: "POST",
         headers: {
