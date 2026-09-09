@@ -18,22 +18,20 @@ const Login = () => {
     );
 
     const data = await res.json();
+if (res.ok) {
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("userName", data.name);
+  localStorage.setItem("userEmail", data.email);
+  localStorage.setItem("role", data.role);
 
-    if (res.ok) {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("userName", data.name);
-      localStorage.setItem("role", data.role);
+  window.dispatchEvent(new Event("authChanged"));
 
-      window.dispatchEvent(new Event("authChanged"));
-
-     if (data.role === "admin") {
-  window.location.href = "http://localhost:5174/admin";
-} else {
-  navigate("/");
+  if (data.role === "admin") {
+    window.location.href = "http://localhost:5174/admin";
+  } else {
+    navigate("/");
+  }
 }
-    } else {
-      alert(data.message);
-    }
   };
 
   return (
