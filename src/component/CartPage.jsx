@@ -15,11 +15,13 @@ const CartPage = () => {
     setCart(savedCart);
   }, []);
 
-  const subtotal = cart.reduce(
-    (total, item) =>
-      total + Number(item.price) * Number(item.qty),
-    0
-  );
+  // Safe price calculation
+  const subtotal = cart.reduce((total, item) => {
+    const price = Number(item.price) || 0;
+    const qty = Number(item.qty) || 1;
+
+    return total + price * qty;
+  }, 0);
 
   const delivery = cart.length > 0 ? 15 : 0;
 
@@ -42,6 +44,12 @@ const CartPage = () => {
       return;
     }
 
+    // Make sure total is a valid number
+    if (!Number.isFinite(total) || total <= 0) {
+      alert("Invalid cart total. Please remove the product and add it again.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -52,15 +60,17 @@ const CartPage = () => {
         items: cart.map((item) => ({
           name: item.name,
           image: item.image,
-          price: Number(item.price),
-          qty: Number(item.qty),
+          price: Number(item.price) || 0,
+          qty: Number(item.qty) || 1,
           size: item.size,
           color: item.color,
         })),
 
-        total: Number(total),
+        total: Number(total.toFixed(2)),
       };
-console.log("ORDER DATA:", orderData);
+
+      console.log("ORDER DATA:", orderData);
+
       const res = await fetch(API_URL, {
         method: "POST",
         headers: {
@@ -89,7 +99,10 @@ console.log("ORDER DATA:", orderData);
     } catch (error) {
       console.error("Checkout error:", error);
 
-      alert("Something went wrong while placing order.");
+      alert(
+        error.message ||
+          "Something went wrong while placing order."
+      );
     } finally {
       setLoading(false);
     }
@@ -157,7 +170,7 @@ console.log("ORDER DATA:", orderData);
                   </p>
 
                   <p className="cart-item-price">
-                    ${item.price}
+                    ${Number(item.price) || 0}
                   </p>
 
                 </div>
