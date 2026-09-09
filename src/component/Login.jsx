@@ -8,36 +8,66 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const res = await fetch(
-      "https://e-commerce-backend-five-henna.vercel.app/auth/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+    try {
+      const res = await fetch(
+        "https://e-commerce-backend-five-henna.vercel.app/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
+
+      const data = await res.json();
+
+      console.log("LOGIN RESPONSE:", data);
+
+      if (res.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userName", data.name);
+        localStorage.setItem("userEmail", data.email);
+        localStorage.setItem("role", data.role);
+
+        console.log(
+          "Saved userName:",
+          localStorage.getItem("userName")
+        );
+
+        console.log(
+          "Saved userEmail:",
+          localStorage.getItem("userEmail")
+        );
+
+        window.dispatchEvent(new Event("authChanged"));
+
+        if (data.role === "admin") {
+          window.location.href =
+            "http://localhost:5174/admin";
+        } else {
+          navigate("/");
+        }
+      } else {
+        alert(data.message || "Login failed");
       }
-    );
-
-    const data = await res.json();
-if (res.ok) {
-  localStorage.setItem("token", data.token);
-  localStorage.setItem("userName", data.name);
-  localStorage.setItem("userEmail", data.email);
-  localStorage.setItem("role", data.role);
-
-  window.dispatchEvent(new Event("authChanged"));
-
-  if (data.role === "admin") {
-    window.location.href = "http://localhost:5174/admin";
-  } else {
-    navigate("/");
-  }
-}
+    } catch (error) {
+      console.error("Login Error:", error);
+      alert("Something went wrong during login");
+    }
   };
 
   return (
     <div className="auth-wrapper">
       <div className="auth-card">
-        <div className="auth-logo">SHOP.CO</div>
+
+        <div className="auth-logo">
+          SHOP.CO
+        </div>
+
         <p className="auth-subtitle">
           Welcome back, login to your account
         </p>
@@ -57,14 +87,20 @@ if (res.ok) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="auth-btn" onClick={handleLogin}>
+        <button
+          className="auth-btn"
+          onClick={handleLogin}
+        >
           Login
         </button>
 
         <p className="auth-switch">
           Don't have an account?{" "}
-          <span onClick={() => navigate("/signup")}>Sign Up</span>
+          <span onClick={() => navigate("/signup")}>
+            Sign Up
+          </span>
         </p>
+
       </div>
     </div>
   );
