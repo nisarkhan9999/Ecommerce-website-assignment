@@ -3,6 +3,10 @@ import "./CartPage.css";
 
 const CartPage = () => {
   const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const API_URL =
+    "https://e-commerce-backend-five-henna.vercel.app/orders";
 
   useEffect(() => {
     const savedCart =
@@ -21,6 +25,76 @@ const CartPage = () => {
 
   const total = subtotal + delivery;
 
+  const handleCheckout = async () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty");
+      return;
+    }
+
+    const customerName =
+      localStorage.getItem("userName");
+
+    const customerEmail =
+      localStorage.getItem("userEmail");
+
+    if (!customerName || !customerEmail) {
+      alert("Please login before checkout");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const orderData = {
+        customerName,
+        customerEmail,
+
+        items: cart.map((item) => ({
+          name: item.name,
+          image: item.image,
+          price: Number(item.price),
+          qty: Number(item.qty),
+          size: item.size,
+          color: item.color,
+        })),
+
+        total: Number(total),
+      };
+
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(
+          data.message || "Order failed"
+        );
+      }
+
+      alert("Order placed successfully!");
+
+      localStorage.removeItem("cart");
+
+      setCart([]);
+
+      window.dispatchEvent(
+        new Event("cartUpdated")
+      );
+    } catch (error) {
+      console.error("Checkout error:", error);
+
+      alert("Something went wrong while placing order.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="cart-page">
 
@@ -30,6 +104,7 @@ const CartPage = () => {
 
         <div className="empty-cart">
           <h2>Your cart is empty</h2>
+
           <p>
             You haven't added anything to your cart yet.
           </p>
@@ -137,8 +212,14 @@ const CartPage = () => {
 
             </div>
 
-            <button className="checkout-btn">
-              Go to Checkout →
+            <button
+              className="checkout-btn"
+              onClick={handleCheckout}
+              disabled={loading}
+            >
+              {loading
+                ? "Placing Order..."
+                : "Go to Checkout →"}
             </button>
 
           </div>
