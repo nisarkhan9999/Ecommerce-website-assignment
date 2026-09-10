@@ -45,12 +45,11 @@ const Login = () => {
 
         window.dispatchEvent(new Event("authChanged"));
 
-        if (data.role === "admin") {
-          window.location.href =
-            "http://localhost:5174/admin";
-        } else {
-          navigate("/");
-        }
+      if (data.role === "admin") {
+  window.location.href = `https://ecommerce-dashboard-eight-nu.vercel.app/admin?token=${data.token}`;
+} else {
+  navigate("/");
+}
       } else {
         alert(data.message || "Login failed");
       }
